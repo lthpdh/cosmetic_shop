@@ -348,23 +348,8 @@ fetch('/cosmetic_shop/components/header.html')
       // Xóa script cũ nếu muốn
       // oldScript.remove();
     });
-  function DropdownPolicyOnce() {
-      const btn = document.getElementById('policy-btn');
-      const menu = document.getElementById('policy-menu');
-      if (!btn || !menu) return;
-      btn.onclick = null;
-      btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
-      });
-      document.addEventListener('click', function(e) {
-        if (!btn.contains(e.target) && !menu.contains(e.target)) {
-          menu.style.display = 'none';
-        }
-      });
-    }
-    setTimeout(DropdownPolicyOnce, 200);
+  
+
 
 fetch('/cosmetic_shop/components/footer.html')
   .then(res => res.text())
