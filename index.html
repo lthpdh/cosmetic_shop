@@ -328,7 +328,32 @@ Không chứa paraben, cồn hay hương liệu, an toàn cho da nhạy cảm v�
 <script src="/cosmetic_shop/assets/js/main.js"></script>
 <script src="/cosmetic_shop/assets/js/banner.js"></script>
 <div id="footer"></div>
+<script>
+fetch('/cosmetic_shop/components/header.html')
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById('header').innerHTML = data;
+    // Thực thi lại các script trong header
+    const scripts = document.getElementById('header').querySelectorAll('script');
+    scripts.forEach(oldScript => {
+      const newScript = document.createElement('script');
+      if (oldScript.src) {
+        newScript.src = oldScript.src;
+      } else {
+        newScript.textContent = oldScript.textContent;
+      }
+      document.body.appendChild(newScript);
+      // Xóa script cũ nếu muốn
+      // oldScript.remove();
+    });
+  });
 
+fetch('/cosmetic_shop/components/footer.html')
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById('footer').innerHTML = data;
+  });
+</script>
 <script>
   // Hiển thị popup sau khi tải trang
   window.addEventListener('load', function () {
@@ -348,37 +373,7 @@ Không chứa paraben, cồn hay hương liệu, an toàn cho da nhạy cảm v�
     }
   });
 </script>
-<script>
 
-  
-fetch('/cosmetic_shop/components/header.html')
-  .then(res => res.text())
-  .then(data => {
-    document.getElementById('header').innerHTML = data;
-    // Thực thi lại các script trong header
-    const scripts = document.getElementById('header').querySelectorAll('script');
-    scripts.forEach(oldScript => {
-      const newScript = document.createElement('script');
-      if (oldScript.src) {
-        newScript.src = oldScript.src;
-      } else {
-        newScript.textContent = oldScript.textContent;
-      }
-      document.body.appendChild(newScript);
-      // Xóa script cũ nếu muốn
-      // oldScript.remove();
-    });
-  
-
-
-fetch('/cosmetic_shop/components/footer.html')
-  .then(res => res.text())
-  .then(data => {
-    document.getElementById('footer').innerHTML = data;
-  });
-</script>
-
-  
 </body>
 
 </html>
