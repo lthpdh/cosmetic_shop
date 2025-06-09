@@ -79,7 +79,6 @@ function initAccountMenu() {
     updateMenu();
 }
 
-// Dropdown Chính Sách
 function setupPolicyDropdown() {
     const btn = document.getElementById('policy-btn');
     const menu = document.getElementById('policy-menu');
@@ -97,6 +96,8 @@ function setupPolicyDropdown() {
         }
     });
 }
+
+
 
 // Khởi tạo khi DOM đã sẵn sàng
 document.addEventListener('DOMContentLoaded', function() {
@@ -131,9 +132,6 @@ function initWithRetry(maxAttempts = 3) {
     
     tryInit();
 }
-document.addEventListener("DOMContentLoaded", function () {
-  setupPolicyDropdown();
-});
 
 // Start initialization
 document.addEventListener('DOMContentLoaded', () => {
