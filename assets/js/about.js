@@ -1,7 +1,14 @@
 
 fetch('/cosmetic_shop/components/header.html')
   .then(res => res.text())
-  .then(data => { document.getElementById('header-container').innerHTML = data; });
+  .then(data => { document.getElementById('header-container').innerHTML = data; 
+      const script = document.createElement('script');
+      script.src = '/cosmetic_shop/assets/js/header.js';
+      document.body.appendChild(script);
+    });
+
+
+
 fetch('/cosmetic_shop/components/footer.html')
   .then(res => res.text())
   .then(data => { document.getElementById('footer-container').innerHTML = data; });
