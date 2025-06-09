@@ -131,6 +131,9 @@ function initWithRetry(maxAttempts = 3) {
     
     tryInit();
 }
+document.addEventListener("DOMContentLoaded", function () {
+  setupPolicyDropdown();
+});
 
 // Start initialization
 document.addEventListener('DOMContentLoaded', () => {
