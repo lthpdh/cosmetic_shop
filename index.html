@@ -328,6 +328,26 @@ Không chứa paraben, cồn hay hương liệu, an toàn cho da nhạy cảm v�
 <script src="/cosmetic_shop/assets/js/main.js"></script>
 <script src="/cosmetic_shop/assets/js/banner.js"></script>
 <div id="footer"></div>
+
+<script>
+  // Hiển thị popup sau khi tải trang
+  window.addEventListener('load', function () {
+    const popup = document.getElementById('popup-overlay');
+    popup.classList.remove('hidden');
+  });
+
+  // Ẩn popup khi bấm nút đóng hoặc click ra ngoài
+  document.getElementById('close-popup').addEventListener('click', function () {
+    document.getElementById('popup-overlay').classList.add('hidden');
+  });
+
+  // Ẩn popup nếu click vào nền tối (overlay)
+  document.getElementById('popup-overlay').addEventListener('click', function (e) {
+    if (e.target.id === 'popup-overlay') {
+      document.getElementById('popup-overlay').classList.add('hidden');
+    }
+  });
+</script>
 <script>
 
   
@@ -357,39 +377,8 @@ fetch('/cosmetic_shop/components/footer.html')
     document.getElementById('footer').innerHTML = data;
   });
 </script>
-<script>
-  // Hiển thị popup sau khi tải trang
-  window.addEventListener('load', function () {
-    const popup = document.getElementById('popup-overlay');
-    popup.classList.remove('hidden');
-  });
 
-  // Ẩn popup khi bấm nút đóng hoặc click ra ngoài
-  document.getElementById('close-popup').addEventListener('click', function () {
-    document.getElementById('popup-overlay').classList.add('hidden');
-  });
-
-  // Ẩn popup nếu click vào nền tối (overlay)
-  document.getElementById('popup-overlay').addEventListener('click', function (e) {
-    if (e.target.id === 'popup-overlay') {
-      document.getElementById('popup-overlay').classList.add('hidden');
-    }
-  });
-</script>
-<script>
-fetch('/cosmetic_shop/components/header.html')
-  .then(res => res.text())
-  .then(data => {
-    document.getElementById('header').innerHTML = data;
-  });
-
-fetch('/cosmetic_shop/components/footer.html')
-  .then(res => res.text())
-  .then(data => {
-    document.getElementById('footer').innerHTML = data;
-  });
-</script>
-
+  
 </body>
 
 </html>
