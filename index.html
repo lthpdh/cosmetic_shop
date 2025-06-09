@@ -329,6 +329,8 @@ Không chứa paraben, cồn hay hương liệu, an toàn cho da nhạy cảm v�
 <script src="/cosmetic_shop/assets/js/banner.js"></script>
 <div id="footer"></div>
 <script>
+
+  
 fetch('/cosmetic_shop/components/header.html')
   .then(res => res.text())
   .then(data => {
@@ -346,7 +348,14 @@ fetch('/cosmetic_shop/components/header.html')
       // Xóa script cũ nếu muốn
       // oldScript.remove();
     });
-  });
+   setTimeout(function () {
+        if (typeof setupPolicyDropdown === "function") {
+          setupPolicyDropdown();
+        } else {
+          console.log("header.js?");
+        }
+      }, 100);
+    });
 
 fetch('/cosmetic_shop/components/footer.html')
   .then(res => res.text())
