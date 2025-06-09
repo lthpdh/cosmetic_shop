@@ -83,20 +83,17 @@ function setupPolicyDropdown() {
     const btn = document.getElementById('policy-btn');
     const menu = document.getElementById('policy-menu');
     if (!btn || !menu) return;
-
     btn.addEventListener('click', function(e) {
         e.preventDefault();
         e.stopPropagation();
         menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
     });
-
     document.addEventListener('click', function(e) {
         if (!btn.contains(e.target) && !menu.contains(e.target)) {
             menu.style.display = 'none';
         }
     });
 }
-
 
 
 // Khởi tạo khi DOM đã sẵn sàng
