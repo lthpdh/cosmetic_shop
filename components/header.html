@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* CSS cho menu Account */
+        .account {
+            position: relative;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            min-width: 150px;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f0f0f0;
+        }
+
+        .account:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu .logged-in {
+            display: none;
+        }
+    </style>
+</head>
+<header class="w-full bg-[#F0F8FF] shadow-sm">
+  <div class="max-w-screen-xl mx-auto flex items-center justify-between px-4 py-3">
+    <!-- Logo -->
+    <a href="/cosmetic_shop/index.html">
+      <img src="/cosmetic_shop/assets/images/elaria logo.jpg" alt="Elaria Logo" class="h-20 w-auto object-contain rounded-full" />
+    </a>
+
+    <!-- Search bar -->
+    <div class="flex-1 mx-8">
+      <div class="relative">
+        <input type="text" placeholder="Nhập tên sản phẩm..." class="w-full rounded-md bg-white py-2 px-4 text-sm shadow-sm" />
+        <button class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-600 hover:text-blue-600">🔍</button>
+      </div>
+    </div>
+
+    <!-- Icons: Account, Wishlist, Cart -->
+    <div class="flex items-center space-x-6 text-sm text-gray-700">
+      <!-- Account Dropdown -->
+      <div class="account">
+        👤Account
+        <div class="dropdown-menu">
+          <!-- Items for logged out state -->
+          <a href="/cosmetic_shop/account/login.html" class="not-logged-in">Đăng nhập</a>
+          <a href="/cosmetic_shop/account/register.html" class="not-logged-in">Đăng ký</a>
+
+          <!-- Items for logged in state -->
+          <div class="logged-in">
+              <span class="user-phone"></span>
+              <a href="/cosmetic_shop/account/my-account.html">Thông tin tài khoản</a>
+              <a href="/cosmetic_shop/account/logout.html">Đăng xuất</a>
+          </div>
+        </div>
+      </div>
+
+            <!-- Cart -->
+      <a href="/cosmetic_shop/cart/cart.html" class="relative" id="cartIcon">
+        <div class="flex items-center space-x-1 border border-yellow-400 rounded px-2 py-1 hover:bg-yellow-100 cursor-pointer">
+          <span>🛒</span><span>Cart</span>
+          <span class="absolute -top-2 -right-3 bg-black text-white text-xs rounded-full w-5 h-5 flex items-center justify-center" id="cartCount">0</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="bg-white shadow-sm">
+    <div class="max-w-screen-xl mx-auto px-4 py-2 flex space-x-6 text-sm font-semibold text-gray-800">
+      <a href="/cosmetic_shop/about/about.html" class="hover:text-blue-600">GIỚI THIỆU</a>
+      <a href="/cosmetic_shop/products/all-products.html" class="hover:text-blue-600">SẢN PHẨM</a>
+      <a href="/cosmetic_shop/blog/blog-list.html" class="hover:text-blue-600">BLOG</a>
+      <a href="/cosmetic_shop/cart/checkout.html" class="hover:text-blue-600">ĐẶT HÀNG & THANH TOÁN</a>
+      <!-- Dropdown Chính Sách -->
+      <div class="relative" id="policy-dropdown">
+        <button id="policy-btn" class="hover:text-blue-600 flex items-center focus:outline-none bg-transparent border-none p-0 m-0 font-inherit">
+          CHÍNH SÁCH
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div id="policy-menu" class="absolute left-0 mt-2 bg-white border border-gray-200 rounded shadow-lg z-20 min-w-[180px]" style="display: none;">
+          <a href="/cosmetic_shop/policies/bao-mat.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600">Chính sách bảo mật</a>
+          <a href="/cosmetic_shop/policies/dieu-khoan.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600">Điều khoản sử dụng</a>
+          <a href="/cosmetic_shop/policies/doi-tra.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600">Chính sách đổi trả</a>
+        </div>
+      </div>
+      <a href="/cosmetic_shop/contact/contact_page.html" class="hover:text-blue-600">LIÊN HỆ</a>
+    </div>
+  </nav>
+</header>
+
+<!-- Scripts -->
+<script>
+  fetch('/cosmetic_shop/components/header.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('header').innerHTML = data;
+      // Nạp lại script header.js để gắn event cho account
+      const script = document.createElement('script');
+      script.src = '/cosmetic_shop/assets/js/header.js';
+      document.body.appendChild(script);
+    });
+</script>
+</html>
+
+
