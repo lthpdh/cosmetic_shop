@@ -79,13 +79,30 @@ function initAccountMenu() {
     updateMenu();
 }
 
+// Dropdown Chính Sách
+function setupPolicyDropdown() {
+    const btn = document.getElementById('policy-btn');
+    const menu = document.getElementById('policy-menu');
+    if (!btn || !menu) return;
 
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    });
 
+    document.addEventListener('click', function(e) {
+        if (!btn.contains(e.target) && !menu.contains(e.target)) {
+            menu.style.display = 'none';
+        }
+    });
+}
 
 // Khởi tạo khi DOM đã sẵn sàng
 document.addEventListener('DOMContentLoaded', function() {
     updateCartCount();
     initAccountMenu();
+    setupPolicyDropdown();
 });
 
 // Export function cho các file khác sử dụng
@@ -104,6 +121,7 @@ function initWithRetry(maxAttempts = 3) {
         try {
             updateCartCount();
             initAccountMenu();
+            setupPolicyDropdown();
         } catch (e) {
             console.log('Init attempt failed, retrying...', e);
             attempts++;
